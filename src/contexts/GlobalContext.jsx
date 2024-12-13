@@ -8,7 +8,8 @@ export const GlobalProvider = (props) => {
   const [inpText, setInpText] = useState('');
   const [result, setResult] = useState('')
   const [sentQuery, setSentQuery] = useState('');
-  const [load, setLoad] = useState(false)
+  const [load, setLoad] = useState(false);
+  const [history, setHistory] = useState([]);
   return (
   <GlobalContext.Provider value={{isExpanded, setIsExpanded, isMobile, setIsMobile, inpText, setInpText, result, setResult, sentQuery, setSentQuery, load, setLoad}}>
     {props.children}
