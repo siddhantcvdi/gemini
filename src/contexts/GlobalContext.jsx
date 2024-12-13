@@ -7,9 +7,9 @@ export const GlobalProvider = (props) => {
   const [isMobile, setIsMobile] = useState(false);
   const [inpText, setInpText] = useState('');
   const [result, setResult] = useState('')
-  const sendQ = () => {}
+  const [sentQuery, setSentQuery] = useState('');
   return (
-  <GlobalContext.Provider value={{isExpanded, setIsExpanded, isMobile, setIsMobile, inpText, setInpText, result, setResult, sendQ}}>
+  <GlobalContext.Provider value={{isExpanded, setIsExpanded, isMobile, setIsMobile, inpText, setInpText, result, setResult, sentQuery, setSentQuery}}>
     {props.children}
   </GlobalContext.Provider>
 )
