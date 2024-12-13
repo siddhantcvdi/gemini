@@ -6,14 +6,30 @@
     <title>Dead Gemini</title>
     <style>
       body, html {
-        height: 100%;
-        min-height: 100vh;
         margin: 0;
+        padding: 0;
+        height: 100%;
+      }
+
+      #root {
+        height: 100vh;
+        background-color: #1e1f20;
       }
     </style>
   </head>
-  <body style="background-color: #1e1f20;">
+  <body>
     <div id="root"></div>
+    <script>
+      function setFullHeight() {
+        // Dynamically set the height of the root element
+        const root = document.getElementById('root');
+        root.style.height = `${window.innerHeight}px`;
+      }
+
+      // Set the height on load and resize
+      window.addEventListener('load', setFullHeight);
+      window.addEventListener('resize', setFullHeight);
+    </script>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>
