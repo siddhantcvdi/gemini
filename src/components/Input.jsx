@@ -1,11 +1,11 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import send from '../assets/send.svg'
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import { GlobalContext } from '../contexts/GlobalContext'
 
 function Input() {
 
-  const {inpText, setInpText, setResult, setSentQuery, sentQuery} = useContext(GlobalContext)
+  const {inpText, setInpText, setResult, setSentQuery, sentQuery, setLoad} = useContext(GlobalContext)
   const genAI = new GoogleGenerativeAI(import.meta.env.VITE_API_KEY);
   const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
@@ -15,11 +15,18 @@ function Input() {
       return;
     }
     setInpText('')
-    const result = await model.generateContent(prompt);
-    setSentQuery(prompt)
-    setResult(result.response.text())
+    setLoad(true)
+    try {
+      const result = await model.generateContent(prompt);
+      setSentQuery(prompt);
+      setResult(result.response.text());
+    } catch (error) {
+      console.error('Error generating content:', error);
+      setResult('Sorry, there was an issue generating the response.');
+    } finally {
+      setLoad(false);
+    }
   }
-
   return (
     <div className='flex items-center justify-center bottom-[40px] max-sm:bottom-[20px] w-full h-16'>
         <div className='border-[1px] rounded-full border-[#4a5050] w-[90%] max-w-[700px] h-[90%] flex pl-8 pr-2 items-center justify-around'>
