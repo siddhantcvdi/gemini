@@ -1,10 +1,14 @@
 import React from 'react'
 import Topbar from './Topbar'
+import Input from './Input'
+import Result from './Result'
 
 function Main() {
   return (
-    <div className={` flex felx-col flex-1 h-screen bg-[#1e1f20] `}>
+    <div className={`box-border flex flex-col w-full h-screen bg-[#1e1f20] relative`}>
       <Topbar/>
+      <Result/>
+      <Input/>
     </div>
   )
 }

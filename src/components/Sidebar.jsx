@@ -22,9 +22,9 @@ function Sidebar() {
     },[])
     return (
         <nav className={`${isExpanded?'w-[320px] p-3':isMobile? 'w-0 p-0 m-0' : 'w-[72px] p-3'} box-border h-screen bg-[#282a2c] duration-300 ease-in-out rounded-r-md pt-[100px]`}>
-            <div className={`${isExpanded?'w-[125px]':'w-[40px]'} h-[40px] rounded-full bg-[#202123] ml-1 flex items-center justify-between p-2 duration-300 cursor-pointer ${isMobile && !isExpanded?'hidden':'flex'}`}>
+            <div className={`${isExpanded?'w-[125px]':'w-[40px]'} h-[40px] rounded-full bg-[#202123] ml-1 flex items-center justify-between p-2 duration-300 cursor-pointer ${isMobile && !isExpanded?'hidden':'flex'} hover:bg-[#32373d]`}>
                 <img src={plus} alt="" />
-                <p className={`text-[#757577] text-[14px] font-bold mr-2  ${isExpanded?'block':'hidden'} text-nowrap `}>New chat</p>
+                <p className={`text-[#e3e3e3] text-[14px] font-bold mr-2  ${isExpanded?'block':'hidden'} text-nowrap `}>New chat</p>
             </div>
         </nav>
     );
