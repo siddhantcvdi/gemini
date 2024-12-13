@@ -5,8 +5,11 @@ export const GlobalContext = createContext(null)
 export const GlobalProvider = (props) => {
   const [isExpanded, setIsExpanded] = useState(true);
   const [isMobile, setIsMobile] = useState(false);
+  const [inpText, setInpText] = useState('');
+  const [result, setResult] = useState('')
+  const sendQ = () => {}
   return (
-  <GlobalContext.Provider value={{isExpanded, setIsExpanded, isMobile, setIsMobile}}>
+  <GlobalContext.Provider value={{isExpanded, setIsExpanded, isMobile, setIsMobile, inpText, setInpText, result, setResult, sendQ}}>
     {props.children}
   </GlobalContext.Provider>
 )
