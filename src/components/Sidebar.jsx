@@ -21,7 +21,7 @@ function Sidebar() {
         window.addEventListener('resize', handleResize)
     },[])
     return (
-        <nav className={`${isExpanded?'w-[320px]':'w-[72px]'} box-border h-screen bg-[#282a2c] p-3 duration-300 ease-in-out rounded-r-md pt-[100px] ${isMobile && !isExpanded?'w-0 m-0 p-0':'block'}`}>
+        <nav className={`${isExpanded?'w-[320px] p-3':isMobile? 'w-0 p-0 m-0' : 'w-[72px] p-3'} box-border h-screen bg-[#282a2c] duration-300 ease-in-out rounded-r-md pt-[100px]`}>
             <div className={`${isExpanded?'w-[125px]':'w-[40px]'} h-[40px] rounded-full bg-[#202123] ml-1 flex items-center justify-between p-2 duration-300 cursor-pointer ${isMobile && !isExpanded?'hidden':'flex'}`}>
                 <img src={plus} alt="" />
                 <p className={`text-[#757577] text-[14px] font-bold mr-2  ${isExpanded?'block':'hidden'} text-nowrap `}>New chat</p>
