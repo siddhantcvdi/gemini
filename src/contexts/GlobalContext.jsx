@@ -9,7 +9,10 @@ export const GlobalProvider = (props) => {
   const [result, setResult] = useState("");
   const [sentQuery, setSentQuery] = useState("");
   const [load, setLoad] = useState(false);
-  const [history, setHistory] = useState([]);
+  const [history, setHistory] = useState(() => {
+    const recent = localStorage.getItem("recent");
+    return recent ? JSON.parse(recent) : [];
+});
   return (
     <GlobalContext.Provider
       value={{
@@ -26,7 +29,7 @@ export const GlobalProvider = (props) => {
         load,
         setLoad,
         history,
-        setHistory
+        setHistory,
       }}
     >
       {props.children}

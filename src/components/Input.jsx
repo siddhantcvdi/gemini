@@ -5,7 +5,7 @@ import { GlobalContext } from '../contexts/GlobalContext'
 
 function Input() {
 
-  const {inpText, setInpText, setResult, setSentQuery, sentQuery, setLoad, load} = useContext(GlobalContext)
+  const {inpText, setInpText, result, setResult, setSentQuery, sentQuery, setLoad, load,history, setHistory} = useContext(GlobalContext)
   const genAI = new GoogleGenerativeAI(import.meta.env.VITE_API_KEY);
   const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
@@ -17,9 +17,10 @@ function Input() {
     setInpText('')
     setLoad(true)
     try {
-      const result = await model.generateContent(prompt);
+      const ai_response = await model.generateContent(prompt);
       setSentQuery(prompt);
-      setResult(result.response.text());
+      setResult(ai_response.response.text());
+      setHistory([{ sentQuery: prompt, result: ai_response.response.text() }, ...history]);
     } catch (error) {
       console.error('Error generating content:', error);
       setResult('Sorry, there was an issue generating the response.');

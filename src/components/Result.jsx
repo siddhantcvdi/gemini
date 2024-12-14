@@ -40,7 +40,7 @@ function Result() {
         <div className="max-w-[680px] w-[90%] pl-4 justify-start text-white font-bold text-xl mb-2 text-ellipsis">
           {sentQuery}
         </div>
-        <div className="text-white max-w-[680px] w-[90%] p-4 overflow-scroll space-y-4">
+        <div className="text-white max-w-[680px] w-[100%] p-4 overflow-scroll space-y-4">
           <ReactMarkdown>{result}</ReactMarkdown>
         </div>
       </div>
