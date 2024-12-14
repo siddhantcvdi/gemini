@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import burger from "../assets/burger.svg";
 import plus from "../assets/plus.svg";
+import bin from "../assets/bin.svg";
 import { GlobalContext } from "../contexts/GlobalContext";
 import HChat from "./HChat";
 
@@ -13,6 +14,7 @@ function Sidebar() {
     setResult,
     load,
     history,
+    setHistory
   } = useContext(GlobalContext);
   useEffect(() => {
     const handleResize = () => {
@@ -51,6 +53,26 @@ function Sidebar() {
           } text-nowrap `}
         >
           New Chat
+        </p>
+      </button>
+      <button
+        disabled = {load || history.length == 0}
+        onClick={() => {
+          setHistory([]);
+        }}
+        className={`${
+          isExpanded ? "w-fit" : "w-[40px]"
+        } h-[40px] rounded-full bg-[#202123] ml-1 flex items-center justify-between p-2 pl-3 duration-300 cursor-pointer ${
+          isMobile && !isExpanded ? "hidden" : "flex"
+        } active:bg-[#32373d] disabled:cursor-not-allowed mt-2`}
+      >
+        <img src={bin} alt="" />
+        <p
+          className={`text-[#e3e3e3] text-[14px] font-bold mr-2 ml-4  ${
+            isExpanded ? "block" : "hidden"
+          } text-nowrap w-full `}
+        >
+          Clear
         </p>
       </button>
       <div className={`chatHist pt-4 ${!isExpanded?'hidden':'block'} text-nowrap`}>
