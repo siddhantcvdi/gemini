@@ -1,23 +1,14 @@
 import React, { useContext } from "react";
 import { GlobalContext } from "../contexts/GlobalContext";
 import ReactMarkdown from "react-markdown";
-import { ThreeDots } from "react-loader-spinner"; // Import the loader
+import { ScaleLoader } from "react-spinners";
 
 function Result() {
   const { result, inpText, sentQuery, load } = useContext(GlobalContext);
   if (load) {
     return (
       <div className="w-full flex justify-center items-center">
-        <ThreeDots
-          visible={true}
-          height="60"
-          width="60"
-          color="#fff"
-          radius="9"
-          ariaLabel="three-dots-loading"
-          wrapperStyle={{}}
-          wrapperClass=""
-        />
+        <ScaleLoader color="#787878" width={2}/>
       </div>
     );
   } else if (result == "" && !load) {
