@@ -4,7 +4,7 @@ import plus from "../assets/plus.svg"
 import { GlobalContext } from "../contexts/GlobalContext";
 
 function Sidebar() {
-    const {isExpanded, setIsExpanded, isMobile, setIsMobile, setResult}= useContext(GlobalContext)
+    const {isExpanded, setIsExpanded, isMobile, setIsMobile, setResult, load}= useContext(GlobalContext)
     useEffect(()=>{
         const handleResize = () => {
             if(window.innerWidth>=1024)
@@ -22,12 +22,13 @@ function Sidebar() {
     },[])
     return (
         <nav className={`shadow-2xl ${isExpanded?'w-[80%] p-3':isMobile? 'w-0 p-0 m-0' : 'w-[72px] p-3'} max-w-[400px] box-border h-screen bg-[#282a2c] duration-300 ease-linear rounded-r-lg pt-[100px] ${isMobile?'absolute z-20':'static'} `}>
-            <div
+            <button
+            disabled = {load}
             onClick={()=>{setResult('')}}
-             className={`${isExpanded?'w-[125px]':'w-[40px]'} h-[40px] rounded-full bg-[#202123] ml-1 flex items-center justify-between p-2 duration-300 cursor-pointer ${isMobile && !isExpanded?'hidden':'flex'} active:bg-[#32373d]`}>
+             className={`${isExpanded?'w-[125px]':'w-[40px]'} h-[40px] rounded-full bg-[#202123] ml-1 flex items-center justify-between p-2 duration-300 cursor-pointer ${isMobile && !isExpanded?'hidden':'flex'} active:bg-[#32373d] disabled:cursor-wait`}>
                 <img src={plus} alt="" />
                 <p className={`text-[#e3e3e3] text-[14px] font-bold mr-2  ${isExpanded?'block':'hidden'} text-nowrap `}>New Chat</p>
-            </div>
+            </button>
         </nav>
     );
 }
