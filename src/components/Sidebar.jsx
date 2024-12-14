@@ -31,7 +31,7 @@ function Sidebar() {
     <nav
       className={`shadow-2xl ${
         isExpanded ? "w-[80%] p-3" : isMobile ? "w-0 p-0 m-0" : "w-[72px] p-3"
-      } max-w-[320px] box-border h-screen bg-[#282a2c] duration-300 ease-linear rounded-r-lg pt-[100px] ${
+      } max-w-[320px] box-border h-screen bg-[#282a2c] duration-100 ease-linear rounded-r-lg pt-[100px] ${
         isMobile ? "absolute z-20" : "static"
       } `}
     >
