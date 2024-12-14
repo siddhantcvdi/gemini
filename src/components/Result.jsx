@@ -28,7 +28,7 @@ function Result() {
   } else
     return (
       <div className="w-full flex flex-col  items-center p-4 overflow-hidden">
-        <div className="max-w-[680px] w-[90%] pl-4 justify-start text-white font-bold text-xl mb-2 text-ellipsis">
+        <div className="max-w-[680px] w-[90%] justify-start text-white font-bold text-xl mb-2 text-ellipsis">
           {sentQuery}
         </div>
         <div className="text-white max-w-[680px] w-[100%] p-4 overflow-scroll space-y-4">
