@@ -62,7 +62,7 @@ function Sidebar() {
         }}
         className={`${
           isExpanded ? "w-fit" : "w-[40px]"
-        } h-[40px] rounded-full bg-[#202123] ml-1 flex items-center justify-between p-2 pl-3 duration-300 cursor-pointer ${
+        } h-[40px] rounded-full bg-[#202123] ml-1 flex items-center justify-between p-2 pl-3 duration-100 cursor-pointer ${
           isMobile && !isExpanded ? "hidden" : "flex"
         } active:bg-[#32373d] disabled:cursor-not-allowed mt-2`}
       >
