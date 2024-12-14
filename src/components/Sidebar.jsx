@@ -38,7 +38,7 @@ function Sidebar() {
       <button
         disabled={load}
         onClick={() => {
-          setResult("");
+          setResult('');
         }}
         className={`${
           isExpanded ? "w-[125px]" : "w-[40px]"
@@ -59,6 +59,7 @@ function Sidebar() {
         disabled = {load || history.length == 0}
         onClick={() => {
           setHistory([]);
+          setResult('')
         }}
         className={`${
           isExpanded ? "w-fit" : "w-[40px]"
