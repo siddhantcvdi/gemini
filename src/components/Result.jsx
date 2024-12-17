@@ -1,43 +1,51 @@
-import React, { useContext } from "react";
-import { GlobalContext } from "../contexts/GlobalContext";
-import ReactMarkdown from "react-markdown";
-import { ScaleLoader } from "react-spinners";
+import React, {useContext} from "react";
+import {GlobalContext} from "../contexts/GlobalContext";
+import {ScaleLoader} from "react-spinners";
+import Bubble from "./Bubble.jsx";
 
 function Result() {
-  const { result, inpText, sentQuery, load } = useContext(GlobalContext);
-  if (load) {
-    return (
-      <div className="w-full flex justify-center items-center">
-        <ScaleLoader color="#787878" width={2}/>
-      </div>
-    );
-  } else if (result == "" && !load) {
-    return (
-      <div
-        className="w-full flex h-[100%] justify-center items-center text-3xl font-normal"
-        style={{
-          backgroundImage:
-            "linear-gradient(90deg, rgba(77,130,239,1) 7%, rgba(86,43,250,1) 24%, rgba(214,102,117,1) 54%)",
-          WebkitBackgroundClip: "text",
-          WebkitTextFillColor: "transparent",
-        }}
-      >
-        <div className="">Hello, This is DedGemini</div>
-      </div>
-    );
-  } else
-    return (
-      <div className="w-full flex flex-col  items-center p-4 overflow-hidden">
-        <div className="w-[90%] max-w-[680px] text-xl text-white">
-          <p className="text-nowrap text-ellipsis overflow-hidden">
-            {sentQuery}
-          </p>
-        </div>
-        <div className="text-white max-w-[680px] w-[100%] p-4 overflow-scroll space-y-4">
-          <ReactMarkdown>{result}</ReactMarkdown>
-        </div>
-      </div>
-    );
+    const {result, inpText, sentQuery, load} = useContext(GlobalContext);
+
+    // Loading animation
+    if (load) {
+        return (
+            <div className="w-full flex justify-center items-center">
+                <ScaleLoader color="#787878" width={2}/>
+            </div>
+        );
+
+    }
+
+    // Welcome Text
+    else if (result === "" && !load) {
+        return (
+            <div
+                className="w-full flex h-[100%] justify-center items-center text-3xl font-normal"
+                style={{
+                    backgroundImage:
+                        "linear-gradient(90deg, rgba(77,130,239,1) 7%, rgba(86,43,250,1) 24%, rgba(214,102,117,1) 54%)",
+                    WebkitBackgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
+                }}
+            >
+                <div className="">Hello, This is DedGemini</div>
+            </div>
+        );
+    }
+
+    // Load Chat
+    else
+        return (
+            <div className="w-full flex flex-col  items-center p-4 overflow-y-scroll">
+                <div className="w-[90%]  text-white">
+                        <Bubble text = {sentQuery} type='query'/>
+                </div>
+                <div className="text-white w-[90%] p-4 space-y-4">
+                    {/* <ReactMarkdown>{result}</ReactMarkdown> */}
+                    <Bubble text={result} type ='result'/>
+                </div>
+            </div>
+        );
 }
 
 export default Result;
