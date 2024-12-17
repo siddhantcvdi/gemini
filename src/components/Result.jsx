@@ -4,7 +4,7 @@ import {ScaleLoader} from "react-spinners";
 import Bubble from "./Bubble.jsx";
 
 function Result() {
-    const {result, inpText, sentQuery, load} = useContext(GlobalContext);
+    const {result, inpText, sentQuery, load, isMobile} = useContext(GlobalContext);
 
     // Loading animation
     if (load) {
@@ -37,10 +37,10 @@ function Result() {
     else
         return (
             <div className="w-full flex flex-col  items-center p-4 overflow-y-scroll">
-                <div className="w-[90%]  text-white">
+                <div className="w-[80%] max-sm:w-full text-white">
                         <Bubble text = {sentQuery} type='query'/>
                 </div>
-                <div className="text-white w-[90%] p-4 space-y-4">
+                <div className="w-[80%] max-sm:w-full pl-6 text-white space-y-4 mt-6">
                     {/* <ReactMarkdown>{result}</ReactMarkdown> */}
                     <Bubble text={result} type ='result'/>
                 </div>
