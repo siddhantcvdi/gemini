@@ -37,10 +37,10 @@ function Result() {
     else
         return (
             <div className="w-full flex flex-col  items-center p-4 overflow-y-scroll">
-                <div className="w-[80%] max-sm:w-full text-white">
+                <div className={`${isMobile?'w-full':'w-[80%]'}  text-white`}>
                         <Bubble text = {sentQuery} type='query'/>
                 </div>
-                <div className="w-[80%] max-sm:w-full pl-6 text-white space-y-4 mt-6">
+                <div className={` ${isMobile?'w-full':'w-[80%]'} pl-6 text-white space-y-4 mt-6`}>
                     {/* <ReactMarkdown>{result}</ReactMarkdown> */}
                     <Bubble text={result} type ='result'/>
                 </div>
