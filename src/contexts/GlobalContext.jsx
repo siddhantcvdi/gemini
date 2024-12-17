@@ -19,6 +19,7 @@ export const GlobalProvider = (props) => {
     const [result, setResult] = useState("");
     const [load, setLoad] = useState(false);
     const [sentQuery, setSentQuery] = useState("");
+    const [activeSessionId, setActiveSessionId] = useState();
 
 
     return (
@@ -38,6 +39,10 @@ export const GlobalProvider = (props) => {
                 setLoad,
                 history,
                 setHistory,
+                currentChat, 
+                setCurrentChat,
+                activeSessionId,
+                setActiveSessionId
             }}
         >
             {props.children}
