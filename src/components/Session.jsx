@@ -22,7 +22,7 @@ function Session() {
   else if (session?.messages?.length === 0 ) {
     return (
       <div
-        className="w-full flex h-[100%] justify-center items-center text-3xl font-normal"
+        className="w-full flex justify-center items-center text-3xl font-normal"
         style={{
           backgroundImage:
             "linear-gradient(90deg, rgba(77,130,239,1) 7%, rgba(86,43,250,1) 24%, rgba(214,102,117,1) 54%)",
@@ -40,7 +40,7 @@ function Session() {
     console.log(recentSessions);
     
     return (
-      <div className="w-full flex flex-col  items-center p-4 overflow-y-scroll">
+      <div className="w-full flex flex-col items-center p-4 overflow-y-scroll">
         {session?.messages?.map((item, index) => (
           <div key={index} className={`w-full max-w-[900px]  text-white`}>
             {
