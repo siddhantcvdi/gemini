@@ -8,7 +8,7 @@ import { GlobalContext } from "./contexts/GlobalContext";
 function App() {
   const {recentSessions, setSession, setActiveSessionId} = useContext(GlobalContext)
   useEffect(() => {
-    localStorage.setItem("recent", JSON.stringify(recentSessions));
+    localStorage.setItem("recentSessions", JSON.stringify(recentSessions));
   }, [recentSessions]);
   useEffect(()=>{
       let sessionId = Date.now();

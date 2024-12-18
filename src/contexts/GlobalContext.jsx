@@ -9,7 +9,7 @@ export const GlobalProvider = (props) => {
     const [activeSessionId, setActiveSessionId] = useState(null);
     const [session, setSession] = useState({});
     const [recentSessions, setRecentSessions] = useState(()=>{
-        let recent = localStorage.getItem('recent');
+        let recent = localStorage.getItem('recentSessions');
         return recent? JSON.parse(recent): [];
     });
     const [load, setLoad] = useState(false)
