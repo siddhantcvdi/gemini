@@ -5,7 +5,7 @@ import plus from '../assets/plus.svg'
 function Topbar() {
   const {setActiveSessionId,setSession, load, isExpanded}= useContext(GlobalContext)
   return (
-    <div className="w-[100%] h-14 bg-[#1e1f20] p-6 sm:hidden">
+    <div className="w-[100%] h-14 bg-[#1e1f20] p-6">
       <button
         disabled = {load || isExpanded}
         onClick={()=>{
