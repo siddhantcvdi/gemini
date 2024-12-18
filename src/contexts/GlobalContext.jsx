@@ -6,22 +6,13 @@ export const GlobalProvider = (props) => {
     //   UI Functionality
     const [isExpanded, setIsExpanded] = useState(true);
     const [isMobile, setIsMobile] = useState(false);
-    const [inpText, setInpText] = useState("");
-
-    // History Functionality
-    const recent = localStorage.getItem("recent");
-    const [history, setHistory] = useState(() => {
-        return recent ? JSON.parse(recent) : [];
+    const [activeSessionId, setActiveSessionId] = useState(null);
+    const [session, setSession] = useState({});
+    const [recentSessions, setRecentSessions] = useState(()=>{
+        let recent = localStorage.getItem('recent');
+        return recent? JSON.parse(recent): [];
     });
-
-    // Result Display
-    const [currentChat, setCurrentChat] = useState([]);
-    const [result, setResult] = useState("");
-    const [load, setLoad] = useState(false);
-    const [sentQuery, setSentQuery] = useState("");
-    const [activeSessionId, setActiveSessionId] = useState();
-
-
+    const [load, setLoad] = useState(false)
     return (
         <GlobalContext.Provider
             value={{
@@ -29,20 +20,14 @@ export const GlobalProvider = (props) => {
                 setIsExpanded,
                 isMobile,
                 setIsMobile,
-                inpText,
-                setInpText,
-                result,
-                setResult,
-                sentQuery,
-                setSentQuery,
-                load,
-                setLoad,
-                history,
-                setHistory,
-                currentChat, 
-                setCurrentChat,
                 activeSessionId,
-                setActiveSessionId
+                setActiveSessionId,
+                session,
+                setSession,
+                recentSessions,
+                setRecentSessions,
+                load,
+                setLoad
             }}
         >
             {props.children}

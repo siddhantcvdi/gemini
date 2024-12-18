@@ -6,10 +6,15 @@ import BurgerMenu from "./components/BurgerMenu";
 import { GlobalContext } from "./contexts/GlobalContext";
 
 function App() {
-  const {history} = useContext(GlobalContext)
+  const {recentSessions, setSession, setActiveSessionId} = useContext(GlobalContext)
   useEffect(() => {
-    localStorage.setItem("recent", JSON.stringify(history));
-  }, [history]);
+    localStorage.setItem("recent", JSON.stringify(recentSessions));
+  }, [recentSessions]);
+  useEffect(()=>{
+      let sessionId = Date.now();
+      setActiveSessionId(sessionId)
+      setSession({sessionId, messages: []})
+  },[])
   return (
     <div className="flex box-border bg-[#1e1f20]">
       <BurgerMenu />

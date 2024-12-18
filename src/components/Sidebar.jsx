@@ -13,8 +13,11 @@ function Sidebar() {
     setIsMobile,
     setResult,
     load,
-    history,
-    setHistory
+    recentSessions,
+    setRecentSessions,
+    setActiveSessionId,
+    session,
+    setSession
   } = useContext(GlobalContext);
   useEffect(() => {
     const handleResize = () => {
@@ -34,13 +37,15 @@ function Sidebar() {
         } `}
     >
       <button
-        disabled={load}
+        disabled={load || session?.messages?.length === 0}
         onClick={() => {
-          setResult('');
+          let sessionId = Date.now();
+          setActiveSessionId(sessionId)
+          setSession({sessionId, messages: []});
         }}
         className={`${isExpanded ? "w-[125px]" : "w-[40px]"
           } h-[40px] rounded-full bg-[#202123] ml-1 flex items-center justify-between p-2 duration-300 cursor-pointer ${isMobile && !isExpanded ? "hidden" : "flex"
-          } active:bg-[#32373d] disabled:cursor-wait`}
+          } active:bg-[#32373d] disabled:cursor-not-allowed`}
       >
         <img src={plus} alt="" />
         <p
@@ -51,29 +56,26 @@ function Sidebar() {
         </p>
       </button>
       <button
-        disabled={load || history.length == 0}
+        disabled={load || recentSessions?.length === 0}
         onClick={() => {
-          setHistory([]);
-          setResult('')
+          setRecentSessions([]);
         }}
-        className={`${isExpanded ? "w-fit" : "w-[40px]"
-          } h-[40px] rounded-full bg-[#202123] ml-1 flex items-center justify-between p-2 pl-3 duration-100 cursor-pointer ${isMobile && !isExpanded ? "hidden" : "flex"
-          } active:bg-[#32373d] disabled:cursor-not-allowed mt-2`}
-      >
+        className={`${isExpanded ? "w-fit" : "w-[40px]"} h-[40px] rounded-full bg-[#202123] ml-1 flex items-center justify-between p-2 pl-3 duration-100 cursor-pointer ${isMobile && !isExpanded ? "hidden" : "flex"} active:bg-[#32373d] disabled:cursor-not-allowed mt-2`}>
         <img src={bin} alt="" />
         <p
           className={`text-[#e3e3e3] text-[14px] font-bold mr-2 ml-4  ${isExpanded ? "block" : "hidden"
-            } text-nowrap w-full `}
-        >
+            } text-nowrap w-full `}>
           Clear
         </p>
       </button>
       <div className={`chatHist pt-4 ${!isExpanded ? 'hidden' : 'block'} text-nowrap`}>
         <p className="text-[#fff] pl-3 mb-3">Recent</p>
         <ul>
-          {history.map((item, index) => (
-            <HChat key={index} sentQuery={item.sentQuery} response={item.result} />
-          ))}
+          {
+            recentSessions.map((session, index) => (
+              <HChat key={index} session = {session}/>
+            ))
+          }
         </ul>
       </div>
     </nav>

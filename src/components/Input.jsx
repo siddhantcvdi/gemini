@@ -1,47 +1,35 @@
-import React, { useContext, useEffect, useId } from "react";
+import React, { useContext, useEffect, useId, useState } from "react";
 import send from "../assets/send.svg";
-import { GoogleGenerativeAI } from "@google/generative-ai";
+import { GoogleGenerativeAI } from "@google/generative-ai";   
 import { GlobalContext } from "../contexts/GlobalContext";
 
 function Input() {
-  const {
-    inpText,
-    setInpText,
-    result,
-    setResult,
-    setSentQuery,
-    sentQuery,
-    setLoad,
-    load,
-    history,
-    setHistory,
-    currentChat,
-    setCurrentChat,
-    activeSessionId,
-    setActiveSessionId
-  } = useContext(GlobalContext);
+  const { setResult, sentQuery, setLoad, load, activeSessionId, setSession, recentSessions, setRecentSessions } = useContext(GlobalContext);
+  const [inpText, setInpText] = useState('');
   const genAI = new GoogleGenerativeAI(import.meta.env.VITE_API_KEY);
   const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
   const sendQuery = async (prompt) => {
-    if (prompt === "" || prompt == sentQuery) {
-      console.log("No Query Sent!!!");
-      return;
-    }
+    if (prompt === "" || prompt === sentQuery) return;
     setInpText("");
     setLoad(true);
     try {
       const ai_response = await model.generateContent(prompt);
-      setSentQuery(prompt);
-      setResult(ai_response.response.text());
-      setCurrentChat((prevChats) => [
-        ...prevChats,
-        { sendQuery: prompt, result: ai_response.response.text() },
-      ]);
-      
-      setHistory((prevHistory)=>{
+      let message = { sentQuery: prompt, result: ai_response.response.text() }
 
+      setSession((previousSession) => {
+        return ({ sessionId: previousSession.sessionId, messages: [...previousSession.messages,message] })
+      })
+      setRecentSessions((prevRecentSessions) => {
+        let sessionIndex = prevRecentSessions.findIndex((session)=>session.sessionId === activeSessionId)
+        if(sessionIndex !== -1){
+          let newRecentSessions = prevRecentSessions.map((session)=>(session.sessionId === activeSessionId? {sessionId: session.sessionId, messages:[...session.messages, message]}: session))
+          return newRecentSessions;
+        }else{
+          return [{sessionId: activeSessionId, messages: [message]}, ...prevRecentSessions]
+        }
       });
+
     } catch (error) {
       console.error("Error generating content:", error);
       setResult("Sorry, there was an issue generating the response.");
