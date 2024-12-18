@@ -16,7 +16,7 @@ function App() {
       setSession({sessionId, messages: []})
   },[])
   return (
-    <div className="flex box-border bg-[#1e1f20]">
+    <div className="flex box-border bg-[#1e1f20] h-dvh">
       <BurgerMenu />
       <Sidebar />
       <Main />
