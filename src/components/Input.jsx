@@ -4,7 +4,7 @@ import { GoogleGenerativeAI } from "@google/generative-ai";
 import { GlobalContext } from "../contexts/GlobalContext";
 
 function Input() {
-  const { setResult, sentQuery, setLoad, load, activeSessionId, setSession, recentSessions, setRecentSessions } = useContext(GlobalContext);
+  const { setResult, sentQuery, setLoad, load, activeSessionId,isMobile, setSession, recentSessions, setRecentSessions, isExpanded } = useContext(GlobalContext);
   const [inpText, setInpText] = useState('');
   const genAI = new GoogleGenerativeAI(import.meta.env.VITE_API_KEY);
   const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
@@ -48,9 +48,9 @@ function Input() {
           placeholder="Ask DedGemini Anything . . ."
         />
         <button
-          className="rounded-full p-2 cursor-pointer bg-blue-600 active:bg-blue-800 disabled:bg-gray-400 disabled:cursor-wait"
+          className={`rounded-full p-2 cursor-pointer bg-blue-600 ${!isExpanded?'active:bg-blue-800':''} sm:disabled:bg-gray-400 disabled:cursor-wait`}
           onClick={() => sendQuery(inpText)}
-          disabled={load}
+          disabled={load || (isExpanded && isMobile )}
         >
           <img src={send} alt="" />
         </button>
