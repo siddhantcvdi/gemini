@@ -56,7 +56,7 @@ function Session() {
           ) : (
             <Bubble text={item.sentQuery} type="query" />
           )}
-          <div className="pr-6 space-y-4 mt-6 mb-6">
+          <div className="space-y-4 mt-6 mb-6">
             <Bubble text={item.result} type="result" />
           </div>
         </div>
